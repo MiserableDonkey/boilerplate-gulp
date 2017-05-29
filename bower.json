@@ -1,0 +1,11 @@
+{
+  "name": "application",
+  "description": "Application",
+  "authors": [
+    "Thomas Welborn"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "handlebars": "^4.0.5"
+  }
+}

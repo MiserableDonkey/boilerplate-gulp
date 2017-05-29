@@ -1,0 +1,134 @@
+{
+  "id": "application",
+  "project": "Application",
+  "namespace": "Application",
+  "env": {
+    "develop": {
+      "host": "localhost",
+      "port": 9000
+    },
+    "distribute": {}
+  },
+  "pages": {
+    "compileJSTemplates": true,
+    "develop": {
+      "files": [{
+        "id": "project-index",
+        "data": "pages/index.json",
+        "title": "Project",
+        "layout": "index.handlebars",
+        "dirname": ".",
+        "basename": "index",
+        "extname": ".html"
+      }]
+    },
+    "distribute": {
+      "files": [{
+        "id": "project-index",
+        "data": "pages/index.json",
+        "title": "Project",
+        "layout": "index.handlebars",
+        "dirname": ".",
+        "basename": "index",
+        "extname": ".html"
+      }]
+    }
+  },
+  "scripts": {
+    "develop": {
+      "application": {
+        "concat": true,
+        "uglify": false,
+        "sourceMap": true,
+        "dirname": ".",
+        "basename": "main",
+        "extname": ".js",
+        "files": [
+          "develop/scripts/**/*.js"
+        ]
+      },
+      "vendor": {
+        "dirname": "vendor",
+        "files": [
+          "bower_components/handlebars/handlebars.js"
+        ]
+      }
+    },
+    "distribute": {
+      "application": {
+        "concat": true,
+        "uglify": true,
+        "sourceMap": false,
+        "dirname": ".",
+        "basename": "main",
+        "extname": ".js",
+        "files": [
+          "develop/scripts/**/*.js"
+        ]
+      },
+      "vendor": {
+        "concat": false,
+        "uglify": true,
+        "sourceMap": false,
+        "dirname": "vendor",
+        "files": [
+          "bower_components/handlebars/handlebars.js"
+        ]
+      }
+    }
+  },
+  "styles": {
+    "develop": {
+      "application": {
+        "outputStyle": "expanded",
+        "sourceMap": true,
+        "dirname": ".",
+        "basename": "main",
+        "extname": ".css",
+        "files": [
+          "develop/styles/main.scss"
+        ]
+      },
+      "vendor": {
+        "dirname": "vendor",
+        "files": []
+      }
+    },
+    "distribute": {
+      "application": {
+        "outputStyle": "compressed",
+        "sourceMap": false,
+        "dirname": ".",
+        "basename": "main",
+        "extname": ".css",
+        "files": [
+          "develop/styles/main.scss"
+        ]
+      },
+      "vendor": {
+        "outputStyle": "compressed",
+        "sourceMap": false,
+        "dirname": "vendor",
+        "files": []
+      }
+    }
+  },
+  "images": {
+    "develop": {
+      "compress": false
+    },
+    "distribute": {
+      "compress": true
+    }
+  },
+  "copy": {
+    "develop": {
+      "data": {
+        "dest": "data",
+        "files": [
+          "develop/data/**/*.json"
+        ]
+      }
+    }
+  }
+}

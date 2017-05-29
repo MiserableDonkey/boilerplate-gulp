@@ -1,0 +1,9 @@
+bower_components
+node_modules
+.tmp
+.dist
+assets
+design
+documents
+npm-debug.log.*
+test
