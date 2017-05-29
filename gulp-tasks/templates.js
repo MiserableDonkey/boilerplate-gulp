@@ -86,7 +86,7 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
           String('!' + config.paths.temporary.root)
         ]);
 
-        if(config.main.pages.compileJSTemplates) _javascriptTemplates(config.paths.develop.scripts);
+        if(config.main.pages.compileJSTemplates) _javascriptTemplates(config.paths.temporary.scripts);
 
         return _pageFiles(config.main.pages['develop'], config.paths.temporary.root);
       },

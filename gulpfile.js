@@ -49,8 +49,13 @@ gulp.task('distribute', ['distribute']);
 gulp.task('develop', function() {
   runSequence(
     'clean:develop',
-    ['styles:develop', 'images:develop', 'scripts:develop', 'templates:develop', 'copy:develop'],
-    'connect:develop', 'watch:develop'
+    'styles:develop',
+    'images:develop',
+    'scripts:develop',
+    'templates:develop',
+    'copy:develop',
+    'connect:develop',
+    'watch:develop'
   );
 });
 
