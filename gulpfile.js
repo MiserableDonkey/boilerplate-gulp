@@ -35,8 +35,16 @@ gulp.task('watch:develop', _watch().develop);
 gulp.task('clean:develop', _clean().develop);
 gulp.task('copy:develop', _copy().develop);
 
+gulp.task('templates:distribute', _templates().distribute);
+gulp.task('styles:distribute', _styles().distribute);
+gulp.task('scripts:distribute', _scripts().distribute);
+gulp.task('images:distribute', _images().distribute);
+gulp.task('clean:distribute', _clean().distribute);
+gulp.task('copy:distribute', _copy().distribute);
+
 gulp.task('default', ['develop']);
 gulp.task('dev', ['develop']);
+gulp.task('distribute', ['distribute']);
 
 gulp.task('develop', function() {
   runSequence(
@@ -53,6 +61,6 @@ gulp.task('distribute', function() {
     'scripts:distribute',
     'images:distribute',
     'templates:distribute',
-    'upload:distribute'
+    'copy:distribute'
   );
 });

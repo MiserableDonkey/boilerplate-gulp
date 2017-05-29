@@ -2,7 +2,7 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
 
   return function() {
     var _compileHandlebarsOptions = {
-      batch: path.join(config.paths.develop.templates, 'partials')
+      batch: config.paths.develop.partials
     };
 
     function _dataFile(_pageConfig) {
@@ -15,7 +15,7 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
     };
 
     function _pageFile(_pageConfig, _destPath) {
-        var _templateFilePath = path.join(config.paths.develop.templates, 'layouts', _pageConfig.layout);
+        var _templateFilePath = path.join(config.paths.develop.layouts, _pageConfig.layout);
         var _pageFilePath = path.join(_destPath, _pageConfig.dirname, '/');
         var _relativeRootPath = path.relative(_pageFilePath, _destPath + '/');
         if(_relativeRootPath == '' || !_relativeRootPath) {
@@ -47,20 +47,20 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
     };
 
     function _javascriptTemplates(_destPath) {
-      var partials = gulp.src(path.join(config.paths.develop.templates, 'partials', '/**/*.hbs'))
+      var partials = gulp.src(path.join(config.paths.develop.partials, '/**/*.hbs'))
         .pipe($.handlebars({
           handlebars: require('handlebars')
         }))
         .pipe($.wrap('Handlebars.registerPartial(<%= processPartialName(file.relative) %>, Handlebars.template(<%= contents %>));', {}, {
           imports: {
             processPartialName: function(filePath) {
-              var processName = filePath.replace(path.join(__dirname, '..', config.paths.develop.templates, 'partials'), '').replace('.js', '')
+              var processName = filePath.replace(path.join(__dirname, '..', config.paths.develop.partials), '').replace('.js', '')
               return JSON.stringify(processName);
             }
           }
         }));
 
-      var templates = gulp.src(path.join(config.paths.develop.templates, 'partials', '/**/*.hbs'))
+      var templates = gulp.src(path.join(config.paths.develop.partials, '/**/*.hbs'))
         .pipe($.handlebars({
           handlebars: require('handlebars')
         }))
@@ -86,10 +86,20 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
           String('!' + config.paths.temporary.root)
         ]);
 
-        if(config.main.pages.compileJSTemplates) _javascriptTemplates(config.paths.temporary.scripts);
+        if(config.main.pages.compileJSTemplates) _javascriptTemplates(config.paths.develop.scripts);
 
         return _pageFiles(config.main.pages['develop'], config.paths.temporary.root);
-      }
+      },
+      distribute: function() {
+        del.sync([
+          path.join(config.paths.distribute.root, '/**/*.html'),
+          String('!' + config.paths.distribute.root)
+        ]);
+
+        if(config.main.pages.compileJSTemplates) _javascriptTemplates(config.paths.distribute.scripts);
+
+        return _pageFiles(config.main.pages['distribute'], config.paths.distribute.root);
+      },
     };
 
   };

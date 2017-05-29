@@ -1,7 +1,7 @@
 module.exports = function(config, gulp, $, path, del, merge, browserSync) {
 
   return function() {
-    
+
     function _scriptFile(scriptConfig, _destPath) {
       var _folderDest;
       var _file;
@@ -89,9 +89,15 @@ module.exports = function(config, gulp, $, path, del, merge, browserSync) {
           path.join(config.paths.temporary.scripts, '/**/*.*')
         ]);
         return _scriptFiles(config.main.scripts['develop'], config.paths.temporary.scripts);
+      },
+      distribute: function(){
+        del.sync([
+          path.join(config.paths.distribute.scripts, '/**/*.*')
+        ]);
+        return _scriptFiles(config.main.scripts['distribute'], config.paths.distribute.scripts);
       }
     };
 
   };
-  
+
 };

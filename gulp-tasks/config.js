@@ -10,6 +10,7 @@ module.exports = function(yargs) {
     temporary: {
       root: '.tmp',
       images: '.tmp/img',
+      templates: '.tmp',
       scripts: '.tmp/js',
       styles: '.tmp/css',
       fonts: '.tmp/fonts'
@@ -20,9 +21,18 @@ module.exports = function(yargs) {
       data: 'develop/data',
       images: 'develop/images',
       templates: 'develop/templates',
+      layouts: 'develop/templates/layouts',
+      partials: 'develop/templates/partials',
       scripts: 'develop/scripts',
       styles: 'develop/styles',
       fonts: 'develop/fonts'
+    },
+    distribute: {
+      root: 'dist',
+      images: 'dist/img',
+      scripts: 'dist/js',
+      styles: 'dist/css',
+      fonts: 'dist/fonts'
     }
   };
 

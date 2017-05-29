@@ -23,9 +23,12 @@ module.exports = function(config, gulp, $, path, del) {
     return {
       develop: function() {
         return _fileCopy(config.main.copy['develop'], config.paths.temporary.root);
+      },
+      distribute: function() {
+        return _fileCopy(config.main.copy['distribute'], config.paths.distribute.root);
       }
     };
 
   };
-  
+
 };

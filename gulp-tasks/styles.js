@@ -1,7 +1,7 @@
 module.exports = function(config, gulp, $, path, del, browserSync) {
-  
+
   return function() {
-    
+
     function _styleFile(_styleConfig, _destPath) {
       var _folderDest = _styleConfig.dirname;
       var _fileDest = _styleConfig.basename + _styleConfig.extname;
@@ -55,9 +55,13 @@ module.exports = function(config, gulp, $, path, del, browserSync) {
       develop: function(){
         del.sync(path.join(config.paths.temporary.styles, '/**/*.*'));
         return _styleFiles(config.main.styles['develop'], config.paths.temporary.styles);
+      },
+      distribute: function(){
+        del.sync(path.join(config.paths.distribute.styles, '/**/*.*'));
+        return _styleFiles(config.main.styles['distribute'], config.paths.distribute.styles);
       }
     };
 
   };
-  
+
 };
