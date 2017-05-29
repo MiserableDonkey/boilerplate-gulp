@@ -1,12 +1,10 @@
 # Boilerplate - Gulp
------
 
 Minimalistic web project boilerplate using Gulp. Compiles image, script, style,
 and template files into a local development environment or distributable folder.
 
 
 ## Getting started
------
 
 1. Clone [boilerplate-gulp](https://github.com/MiserableDonkey/boilerplate-gulp.git) into your project development folder.
 
@@ -30,18 +28,16 @@ gulp distribute;
 
 
 ## Configuring projects
------
 
-* /data/main.json contains configuration data for publishing projects.
-* /data/pages/ contains data for static page files.
-* /develop contains project templates, scripts, styles, and images.
-* /bower_components contains client-side dependencies described by bower.json.
-* /node_modules contains server-side dependencies described by package.json.
+* */data/main.json* contains configuration data for publishing projects.
+* */data/pages/* contains data for static page files.
+* */develop* contains project templates, scripts, styles, and images.
+* */bower_components* contains client-side dependencies described by bower.json.
+* */node_modules* contains server-side dependencies described by package.json.
 
 
 
 ### Create a page
------
 
 **Define page data**
 
@@ -69,7 +65,7 @@ gulp distribute;
 
 **Create a page template**
 
-*/develop/templates/layouts*
+*/develop/templates/layouts/index.handlebars*
 
 ```
 <!DOCTYPE html>
@@ -134,8 +130,8 @@ gulp distribute;
 <!--
   Reference filename relative to /develop/templates/partials folder.
   Example:
-  * /develop/templates/partials/application.hbs = {{> application}}
-  * /develop/templates/partials/application/header.hbs = {{> application/header}}
+  - /develop/templates/partials/application.hbs = {{> application}}
+  - /develop/templates/partials/application/header.hbs = {{> application/header}}
 -->
 {{> application}}
 ```
@@ -149,8 +145,8 @@ gulp distribute;
 /*
   Templates are namespaced under Application.Templates and referenced by filename
   Example:
-  * /develop/templates/partials/application.hbs = Application.Templates.application
-  * /develop/templates/partials/application/header.hbs = Application.Templates.application.header
+  - /develop/templates/partials/application.hbs = Application.Templates.application
+  - /develop/templates/partials/application/header.hbs = Application.Templates.application.header
 */
 Application.Templates.application();
 ```
@@ -219,6 +215,6 @@ gulp distribute
 
 
 ## Notes
------
-This is a minimalist boilerplate. Start a local development environment configured
-with Gulp, Handlebars, and SASS in less time than it takes to microwave Top Ramen.
+
+Start a local development environment configured with Gulp, Handlebars, and SASS
+in much less time than it takes to microwave Top Ramen.
