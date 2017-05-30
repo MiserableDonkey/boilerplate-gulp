@@ -4,16 +4,10 @@ module.exports = function(config, gulp, $, _, path, source, browserSync) {
 
     return {
       develop: function() {
-        browserSync.watch('**/*.html').on('change', browserSync.reload);
-        browserSync.watch('css/**/*.css').on('change', browserSync.reload);
-        browserSync.watch('js/**/*.js').on('change', browserSync.reload);
-        browserSync.watch('img/**/*.{svg,jpg,gif,png}').on('change', browserSync.reload);
-        browserSync.watch('fonts/**/*.*').on('change', browserSync.reload);
-        browserSync.watch('media/**/*.*').on('change', browserSync.reload);
-        browserSync.watch('files/**/*.*').on('change', browserSync.reload);
         browserSync.init({
           browser: "chrome",
           port: 8000,
+          notify: false,
           server: {
             baseDir: ['.tmp'],
           },

@@ -33,8 +33,7 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
             path.extname = _pageConfig.extname;
             return path;
           }))
-          .pipe(gulp.dest(_destPath))
-          .on('end', browserSync.reload);
+          .pipe(gulp.dest(_destPath));
     };
 
     function _pageFiles(_templateFileData, _destPath) {
@@ -71,7 +70,8 @@ module.exports = function(config, gulp, $, path, del, merge, decache, browserSyn
         }));
       return merge(partials, templates)
         .pipe($.concat('templates.js'))
-        .pipe(gulp.dest(_destPath));
+        .pipe(gulp.dest(_destPath))
+        .pipe(browserSync.stream());
     };
 
     function _onError(err) {

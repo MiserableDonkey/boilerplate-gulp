@@ -1,4 +1,4 @@
-module.exports = function(config, gulp, $, path, del, browserSync) {
+module.exports = function(config, gulp, $, path, del) {
 
   return function() {
 
@@ -6,11 +6,12 @@ module.exports = function(config, gulp, $, path, del, browserSync) {
       var _imageFiles = gulp.src(config.paths.develop.images + '/**/*');
       switch(_imageFileData.compress) {
         case true:
-          _imageFiles.pipe($.imagemin());
+          _imageFiles
+            .pipe($.imagemin());
           break;
       }
-      _imageFiles.pipe(gulp.dest(_destPath))
-        .on('end', browserSync.reload);
+      _imageFiles
+        .pipe(gulp.dest(_destPath));
       return _imageFiles;
 
     };

@@ -19,12 +19,12 @@ var config = require('./gulp-tasks/config')(yargs);
 // Processes
 var _clean = require('./gulp-tasks/clean')(config, gulp, $, path, del);
 var _browserSync = require('./gulp-tasks/browser-sync')(config, gulp, $, _, path, source, browserSync);
-var _watch = require('./gulp-tasks/watch')(config, gulp, $, path);
+var _watch = require('./gulp-tasks/watch')(config, gulp, $, path, browserSync);
 var _templates = require('./gulp-tasks/templates')(config, gulp, $, path, del, merge, decache, browserSync);
 var _styles = require('./gulp-tasks/styles')(config, gulp, $, path, del, browserSync);
 var _scripts = require('./gulp-tasks/scripts')(config, gulp, $, path, del, merge, browserSync);
-var _images = require('./gulp-tasks/images')(config, gulp, $, path, del, browserSync);
-var _copy = require('./gulp-tasks/copy')(config, gulp, $, path, del);
+var _images = require('./gulp-tasks/images')(config, gulp, $, path, del);
+var _copy = require('./gulp-tasks/copy')(config, gulp, $, path, del, browserSync);
 
 gulp.task('templates:develop', _templates().develop);
 gulp.task('styles:develop', _styles().develop);

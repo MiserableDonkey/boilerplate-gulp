@@ -24,42 +24,35 @@ module.exports = function(config, gulp, $, path, del, merge, browserSync) {
           .pipe($.concat(_fileName))
           .pipe($.uglify())
           .pipe($.sourcemaps.write())
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else if(scriptConfig.concat && scriptConfig.uglify && !scriptConfig.sourceMap) {
         _file = gulp.src(scriptConfig.files)
           .pipe($.concat(_fileName))
           .pipe($.uglify())
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else if(scriptConfig.concat && !scriptConfig.uglify && scriptConfig.sourceMap) {
         _file = gulp.src(scriptConfig.files)
           .pipe($.sourcemaps.init())
           .pipe($.concat(_fileName))
           .pipe($.sourcemaps.write())
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else if(scriptConfig.concat && !scriptConfig.uglify && !scriptConfig.sourceMap) {
         _file = gulp.src(scriptConfig.files)
           .pipe($.concat(_fileName))
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else if(!scriptConfig.concat && scriptConfig.uglify && scriptConfig.sourceMap) {
         _file = gulp.src(scriptConfig.files)
           .pipe($.sourcemaps.init())
           .pipe($.uglify())
           .pipe($.sourcemaps.write())
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else if(!scriptConfig.concat && scriptConfig.uglify && !scriptConfig.sourceMap) {
         _file = gulp.src(scriptConfig.files)
           .pipe($.uglify())
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }else {
         _file = gulp.src(scriptConfig.files)
-          .pipe(gulp.dest(_folderDest))
-          .pipe(browserSync.stream());
+          .pipe(gulp.dest(_folderDest));
       }
       return _file;
 
@@ -86,13 +79,16 @@ module.exports = function(config, gulp, $, path, del, merge, browserSync) {
     return {
       develop: function(){
         del.sync([
-          path.join(config.paths.temporary.scripts, '/**/*.*')
+          path.join(config.paths.temporary.scripts, '/**/*.*'),
+          String('!').concat(config.paths.temporary.scripts),
+          String('!').concat(path.join(config.paths.temporary.scripts, 'templates.js'))
         ]);
         return _scriptFiles(config.main.scripts['develop'], config.paths.temporary.scripts);
       },
       distribute: function(){
         del.sync([
-          path.join(config.paths.distribute.scripts, '/**/*.*')
+          path.join(config.paths.distribute.scripts, '/**/*.*'),
+          String('!').concat(config.paths.distribute.scripts)
         ]);
         return _scriptFiles(config.main.scripts['distribute'], config.paths.distribute.scripts);
       }

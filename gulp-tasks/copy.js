@@ -1,4 +1,4 @@
-module.exports = function(config, gulp, $, path, del) {
+module.exports = function(config, gulp, $, path, del, browserSync) {
 
   return function() {
 
@@ -14,6 +14,7 @@ module.exports = function(config, gulp, $, path, del) {
           fileGroup.push(
             gulp.src(fileSrc)
               .pipe(gulp.dest(fileDest))
+              .pipe(browserSync.stream())
           );
         }
       }

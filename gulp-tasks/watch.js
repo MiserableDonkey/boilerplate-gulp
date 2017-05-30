@@ -1,4 +1,4 @@
-module.exports = function(config, gulp, $, path) {
+module.exports = function(config, gulp, $, path, browserSync) {
 
   return function() {
 
@@ -6,7 +6,7 @@ module.exports = function(config, gulp, $, path) {
       develop: function() {
         gulp.watch([
           path.join(config.paths.develop.data, '/**/*.json')
-        ], ['styles:develop', 'scripts:develop', 'images:develop', 'templates:develop']);
+        ], ['styles:develop', 'scripts:develop', 'images:develop', 'templates:develop', 'copy:develop']).on('change', browserSync.stream);
         gulp.watch([
           path.join(config.paths.develop.templates, 'layouts', '/**/*.handlebars'),
           path.join(config.paths.develop.templates, 'partials', '/**/*.hbs')
@@ -20,6 +20,19 @@ module.exports = function(config, gulp, $, path) {
         gulp.watch([
           path.join(config.paths.develop.images, '/**/*.*')
         ], ['images:develop']);
+
+        gulp.watch([
+          path.join(config.paths.temporary.root, '/**/*.html')
+        ]).on('change', browserSync.stream);
+        gulp.watch([
+          path.join(config.paths.temporary.styles, '/**/*.css')
+        ]).on('change', browserSync.stream);
+        gulp.watch([
+          path.join(config.paths.temporary.scripts, '/**/*.js')
+        ]).on('change', browserSync.stream);
+        gulp.watch([
+          path.join(config.paths.temporary.images, '/**/*.*')
+        ]).on('change', browserSync.reload);
       }
     };
 

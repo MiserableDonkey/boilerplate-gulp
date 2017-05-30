@@ -32,7 +32,7 @@ module.exports = function(config, gulp, $, path, del, browserSync) {
         .on('error', _onError)
         .pipe($.autoprefixer())
         .pipe(gulp.dest(_folderDest))
-        .on('end', browserSync.reload);
+        .pipe(browserSync.stream());
       return _file;
     };
 
@@ -53,11 +53,17 @@ module.exports = function(config, gulp, $, path, del, browserSync) {
 
     return {
       develop: function(){
-        del.sync(path.join(config.paths.temporary.styles, '/**/*.*'));
+        del.sync([
+          path.join(config.paths.temporary.styles, '/**/*.*'),
+          String('!').concat(config.paths.temporary.styles)
+        ]);
         return _styleFiles(config.main.styles['develop'], config.paths.temporary.styles);
       },
       distribute: function(){
-        del.sync(path.join(config.paths.distribute.styles, '/**/*.*'));
+        del.sync([
+          path.join(config.paths.distribute.styles, '/**/*.*'),
+          String('!').concat(config.paths.distribute.styles)
+        ]);
         return _styleFiles(config.main.styles['distribute'], config.paths.distribute.styles);
       }
     };
